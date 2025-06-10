@@ -1,0 +1,64 @@
+syntax = "proto3";
+package incidents;
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "incidents.grpc";
+
+message Position {
+  double latitude = 1;
+  double longitude = 2;
+}
+
+message Address {
+  string street = 1;
+  string city = 2;
+  string state = 3;
+  string postalCode = 4;
+  string fipsCode = 5;
+  string country = 6;
+  double latitude = 7;
+  double longitude = 8;
+  string geohash = 9;
+}
+
+enum IncidentType {
+  INCIDENT_TYPE_UNSPECIFIED = 0;
+  TRAFFIC = 1;
+  CRIME = 2;
+  EMERGENCY = 3;
+}
+
+enum Severity {
+  SEVERITY_UNSPECIFIED = 0;
+  MINOR = 1;
+  MODERATE = 2;
+  MAJOR = 3;
+  CRITICAL = 4;
+}
+
+enum Damage {
+  DAMAGE_UNSPECIFIED = 0;
+  INJURY = 1;
+  FATALITY = 2;
+  PROPERTY = 3;
+}
+
+message Incident {
+  string uuid = 1;
+  IncidentType type = 2;
+  google.protobuf.Timestamp occurrenceTime = 3;
+  Address address = 4;
+  Severity severity = 5;
+  Damage damage = 6;
+  string name = 7;
+}
+
+message IncidentList {
+  repeated Incident incidents = 1;
+}
+
+service IncidentService {
+  rpc GetIncidentsByLocation(Position) returns (IncidentList);
+}
