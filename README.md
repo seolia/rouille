@@ -16,6 +16,7 @@ This project provides a simple Kotlin gRPC server for querying incident data. In
 
 The server listens on port `9090` and exposes the `IncidentService` gRPC API.
 Incidents are indexed by geohash for quick lookup via the built-in `GeocodingService`.
+See [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) for examples of public traffic and crime data feeds that can be ingested.
 
 ## API
 
