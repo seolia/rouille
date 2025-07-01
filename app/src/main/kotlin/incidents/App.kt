@@ -8,12 +8,27 @@ import io.grpc.ServerBuilder
 
 // Preload repository with sample data
 import incidents.loadSampleData
+import incidents.IncidentIngestor
+import incidents.Config
 
 /**
  * Entry point for the gRPC server.
  */
 fun main() {
     loadSampleData()
+    val resource = IncidentIngestor::class.java.getResourceAsStream("/traffic_incidents.csv")
+    if (resource != null) {
+        IncidentIngestor.ingestCsv(resource)
+    }
+
+    val config = Config.loadDefault()
+    config.incident.sourceUrl?.takeIf { it.isNotBlank() }?.let { url ->
+        try {
+            IncidentIngestor.ingestFromUrl(url)
+        } catch (e: Exception) {
+            println("Failed to ingest from $url: ${e.message}")
+        }
+    }
     val server: Server = ServerBuilder.forPort(9090)
         .addService(IncidentServiceImpl())
         .build()

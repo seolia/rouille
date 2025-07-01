@@ -36,6 +36,7 @@ dependencies {
     implementation(libs.grpc.stub)
     implementation(libs.grpc.kotlin.stub)
     implementation(libs.grpc.netty)
+    implementation(libs.snakeyaml)
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

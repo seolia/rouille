@@ -1,0 +1,4 @@
+uuid,type,occurrence_time,street,city,state,postalCode,fipsCode,country,latitude,longitude,severity,damage,name
+1,TRAFFIC,2024-06-01T08:30:00Z,1 Main St,Metropolis,NY,12345,36061,US,40.0001,-74.0001,MINOR,PROPERTY,Minor fender bender
+2,TRAFFIC,2024-06-02T12:00:00Z,2 High St,Gotham,NJ,54321,34013,US,40.1234,-73.9876,MAJOR,INJURY,Multi-car collision
+3,TRAFFIC,2024-06-03T18:45:00Z,3 State Rd,Star City,CA,67890,06001,US,39.8765,-75.1234,MODERATE,PROPERTY,Truck rollover
